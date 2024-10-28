@@ -9,6 +9,10 @@ def sent_detector():
     statement = request.args.get('textToAnalyze')
     # Pass the sentence to the emotion_detector function and store the response
     response = emotion_detector(statement)
+
+    print(response)
+    if response['dominant_emotion'] is None:
+        return "Invalid text! Please try again!", 400
     # Recreate new object with new dominant emotion property
     modified_response = (
         f"For given statement, the system response is "
@@ -17,10 +21,6 @@ def sent_detector():
         f"'sadness': {response['sadness']}. "
         f"The dominant emotion is <b>{get_dominant_emotion(response)}</b>"
     )
-    
-    
-    if statement is None or len(statement) == 0:
-        return {"message":"Invalid input! Try again."}
 
     return modified_response
 
