@@ -10,9 +10,9 @@ def sent_detector():
     # Pass the sentence to the emotion_detector function and store the response
     response = emotion_detector(statement)
 
-    print(response)
     if response['dominant_emotion'] is None:
-        return "Invalid text! Please try again!", 400
+        return "Invalid text! Please try again!"
+        
     # Recreate new object with new dominant emotion property
     modified_response = (
         f"For given statement, the system response is "
